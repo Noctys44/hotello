@@ -3,7 +3,7 @@
 class User
 {
 
-    private $lastname, $firstname, $mail, $password, $address, $city, $zipcode, $phone, $birthdate, $country, $erreurs = [];
+    private $id, $lastname, $firstname, $mail, $password, $address, $city, $zipcode, $phone, $birthdate, $country, $erreurs = [];
 
     const LASTNAME_INVALIDE = 1;
     const FIRSTNAME_INVALIDE = 2;
@@ -17,14 +17,12 @@ class User
     const COUNTRY_INVALIDE = 10;
 
 
-    public function __construct($data)
+    public function __construct(array $data)
     {
-        if (!empty($data)) {
-            $this->assignement($data);
-        }
+        $this->assignement($data);
     }
 
-    public function assignement($data)
+    public function assignement(array $data)
     {
         foreach ($data as $key => $value) {
             $method = 'set' . ucfirst($key);
@@ -37,7 +35,7 @@ class User
     // SETTERS
     public function setLastname($lastname)
     {
-        if (empty($lastname)) {
+        if (empty($lastname) || !is_string($lastname)) {
             $this->erreur[] = self::LASTNAME_INVALIDE;
         } else {
             $this->lastname = $lastname;
@@ -46,7 +44,7 @@ class User
 
     public function setFirstname($firstname)
     {
-        if (empty($firstname)) {
+        if (empty($firstname) || !is_string($firstname)) {
             $this->erreur[] = self::FIRSTNAME_INVALIDE;
         } else {
             $this->firstname = $firstname;
@@ -55,7 +53,7 @@ class User
 
     public function setMail($mail)
     {
-        if (empty($mail)) {
+        if (empty($mail) || !filter_var($mail, FILTER_VALIDATE_EMAIL)) {
             $this->erreur[] = self::MAIL_INVALIDE;
         } else {
             $this->mail = $mail;
@@ -109,6 +107,7 @@ class User
 
     public function setBirhtdate($birthdate)
     {
+
         if (empty($birthdate)) {
             $this->erreur[] = self::BIRTHDATE_INVALIDE;
         } else {

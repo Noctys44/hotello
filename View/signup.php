@@ -5,32 +5,43 @@ require_once('../Model/UserManager.php');
 require_once('../Model/init.php');
 
 
-$userManager = new UserManager($pdo);
+// $userManager = new UserManager($pdo);
+
 
 if ($_POST) {
-    $user = new User(
+
+    $lastname = $_POST['lastname'];
+    $firstname = $_POST['firstname'];
+    $mail = $_POST['mail'];
+    $password = $_POST['password'];
+    $address = $_POST['address'];
+    $city = $_POST['city'];
+    $zipcode = $_POST['zipcode'];
+    $phone = $_POST['phone'];
+    $birthdate = $_POST['birthdate'];
+    $country = $_POST['country'];
+
+    // $date_birthday = new DateTime($date_birthday);
+
+    $userNew = new User(
         [
-            'lastname' => $_POST['lastname'],
-            'firstname' => $_POST['firstname'],
-            'mail' => $_POST['mail'],
-            'password' => $_POST['password'],
-            'address' => $_POST['address'],
-            'city' => $_POST['city'],
-            'zipcode' => $_POST['zipcode'],
-            'phone' => $_POST['phone'],
-            'birthdate' => $_POST['birthdate'],
-            'country' => $_POST['country'],
+            'lastname' => $lastname,
+            'firstname' => $firstname,
+            'mail' => $mail,
+            'password' => $password,
+            'address' => $address,
+            'city' => $city,
+            'zipcode' => $zipcode,
+            'phone' => $phone,
+            'birthdate' => $birthdate,
+            'country' => $country,
         ]
     );
-
-    if ($user->isUserValid()) {
-        $userManager->insertUser($user);
-        $success = '<div>Le client a bien été enregistré</div>';
-    } else {
-        $erreurs = $user->getErreurs();
-    }
+    $userManager = new UserManager($pdo);
+    $userManager->insertUser($userNew);
 }
-
+$users = new UserManager($pdo);
+$allUsers = $users->getAllUsers();
 ?>
 
 <!DOCTYPE html>
@@ -40,10 +51,27 @@ if ($_POST) {
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
     <title>Sign up</title>
 </head>
 
 <body>
+
+    <div class="container">
+        <table class="table table-striped">
+            <tr>
+                <th class="text-center">Nom</th>
+                <th class="text-center">Prénom</th>
+
+            </tr>
+            <?php while ($row = $allUsers->fetch(PDO::FETCH_ASSOC)) { ?>
+                <tr>
+                    <td class="text-center"> <?php echo $row["lastname"]; ?></td>
+                    <td class="text-center"> <?php echo $row["firstname"]; ?></td>
+                </tr>
+            <?php } ?>
+        </table>
+    </div>
     <h1>Inscription</h1>
     <?php if (isset($message)) echo $success; ?>
     <div>
@@ -91,7 +119,7 @@ if ($_POST) {
             ?>
 
             <label for="phone">Votre numéro de téléphone :</label>
-            <input type="num" name="phone" id="phone">
+            <input type="text" name="phone" id="phone">
             <?php if (isset($erreurs) && in_array(User::PHONE_INVALIDE, $erreurs))
                 echo '<div class="form-text text-danger fw-bold"> Le nom est invalide </div>';
             ?>
