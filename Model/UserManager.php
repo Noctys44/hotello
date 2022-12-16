@@ -36,4 +36,26 @@ class UserManager
         $getUsers = $this->dataBase->query("SELECT * FROM client ORDER BY lastname ASC");
         return $getUsers;
     }
+
+    public function updateUser()
+    {
+        if ($_GET['action'] = "update") {
+            $updateUser = $this->dataBase;
+            if ($_POST) {
+                $fetchUser = $updateUser->query("SELECT * FROM client WHERE id_cli = '$_GET[id_cli]'");
+                $update = $updateUser->query("UPDATE client SET lastname = '$_POST[lastname]', firstname = '$_POST[firstname]', mail = '$_POST[mail]', address = '$_POST[address]', city = '$_POST[city]', zipcode = '$_POST[zipcode]', phone = '$_POST[phone]', birthdate = '$_POST[birthdate]', country = '$_POST[country]'");
+                $actualUser = $fetchUser->fetch(PDO::FETCH_ASSOC);
+                return $actualUser;
+            }
+        }
+    }
+
+    public function deleteUser()
+    {
+        if ($_GET['action'] = "delete") {
+            $deleteUser = $this->dataBase;
+            $del = $deleteUser->query("DELETE FROM client WHERE id_cli = '$_GET[id_cli]'");
+            return $del;
+        }
+    }
 }

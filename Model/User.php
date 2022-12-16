@@ -111,6 +111,7 @@ class User
         if (empty($birthdate)) {
             $this->erreur[] = self::BIRTHDATE_INVALIDE;
         } else {
+
             $this->birthdate = $birthdate;
         }
     }
