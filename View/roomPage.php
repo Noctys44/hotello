@@ -1,8 +1,8 @@
 <?php
 
-require_once('../Models/init.php');
-require_once('../Models/Room.php');
-require_once('../Models/RoomManager.php');
+require_once('../Model/init.php');
+require_once('../Model/Room.php');
+require_once('../Model/RoomManager.php');
 
 $room = new RoomManager($pdo);
 $success = "";
