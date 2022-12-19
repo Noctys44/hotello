@@ -103,7 +103,7 @@ if (isset($_GET['action']) && $_GET['action'] == 'update') {
                 <td class="text-center"> <?php echo $row["country"]; ?></td>
                 <td class="text-center"><a href="<?php echo "?action=update&id_cli=$row[id_cli]"; ?>"> Update</a></td>
                 <td class="text-center"><a href="<?php echo "?action=delete&id_cli=$row[id_cli]"; ?>"> Delete</a></td>
-                <td class="text-center"><?php echo "<a href=admin_reservation.php>Réservation</a>" ?></td>
+                <td class="text-center"><?php echo "<a href=admin_reservation.php?id_cli=$row[id_cli]>Réservation</a>" ?></td>
             </tr>
         <?php } ?>
     </table>
