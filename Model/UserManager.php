@@ -37,17 +37,28 @@ class UserManager
         return $getUsers;
     }
 
+    public function getUserById()
+    {
+        $idUser = $this->dataBase->query("SELECT * FROM client WHERE id_cli = '$_GET[id_cli]'");
+        return $idUser;
+    }
+
     public function updateUser()
     {
-        if ($_GET['action'] = "update") {
-            $updateUser = $this->dataBase;
-            if ($_POST) {
-                $fetchUser = $updateUser->query("SELECT * FROM client WHERE id_cli = '$_GET[id_cli]'");
-                $update = $updateUser->query("UPDATE client SET lastname = '$_POST[lastname]', firstname = '$_POST[firstname]', mail = '$_POST[mail]', address = '$_POST[address]', city = '$_POST[city]', zipcode = '$_POST[zipcode]', phone = '$_POST[phone]', birthdate = '$_POST[birthdate]', country = '$_POST[country]'");
-                $actualUser = $fetchUser->fetch(PDO::FETCH_ASSOC);
-                return $actualUser;
-            }
-        }
+
+        $updateUser = $this->dataBase->prepare("UPDATE client SET lastname = :lastname, firstname = :firstname, mail = :mail, address = :address, city = :city, zipcode = :zipcode, phone = :phone, birthdate = :birthdate, country = :country WHERE id_cli = $_GET[id_cli]");
+        $updateUser->bindValue(':lastname', $_POST['lastname'], PDO::PARAM_STR);
+        $updateUser->bindValue(':firstname', $_POST['firstname'], PDO::PARAM_STR);
+        $updateUser->bindValue(':mail', $_POST['mail'], PDO::PARAM_STR);
+        $updateUser->bindValue(':address', $_POST['address'], PDO::PARAM_STR);
+        $updateUser->bindValue(':city', $_POST['city'], PDO::PARAM_STR);
+        $updateUser->bindValue(':zipcode', $_POST['zipcode'], PDO::PARAM_STR);
+        $updateUser->bindValue(':phone', $_POST['phone'], PDO::PARAM_STR);
+        $updateUser->bindValue(':birthdate', $_POST['birthdate'], PDO::PARAM_STR);
+        $updateUser->bindValue(':country', $_POST['country'], PDO::PARAM_STR);
+        $updateUser->execute();
+
+        header('location:signup.php');
     }
 
     public function deleteUser()

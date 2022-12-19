@@ -39,11 +39,75 @@ if (!empty($_POST) && !isset($_GET['action']) && !isset($_GET['action']) == 'upd
     $userManager->insertUser($userNew);
 }
 
+// SHOW ALL USERS
+$allUsers = $userManager->getAllUsers();
+
+
+// DELETE USER
+if (isset($_GET['action']) && $_GET['action'] == 'delete') {
+    $delUser = $userManager->deleteUser();
+    header('location:signup.php');
+}
+
+// UPDATE USER
+if (isset($_GET['action']) && $_GET['action'] == 'update') {
+    $inputUser = $userManager->getUserById();
+    $actualUser = $inputUser->fetch(PDO::FETCH_ASSOC);
+
+    $lastname = (isset($actualUser['lastname'])) ? $actualUser['lastname'] : '';
+    $firstname = (isset($actualUser['firstname'])) ? $actualUser['firstname'] : '';
+    $mail = (isset($actualUser['mail'])) ? $actualUser['mail'] : '';
+    $address = (isset($actualUser['address'])) ? $actualUser['address'] : '';
+    $city = (isset($actualUser['city'])) ? $actualUser['city'] : '';
+    $zipcode = (isset($actualUser['zipcode'])) ? $actualUser['zipcode'] : '';
+    $phone = (isset($actualUser['phone'])) ? $actualUser['phone'] : '';
+    $birthdate = (isset($actualUser['birthdate'])) ? $actualUser['birthdate'] : '';
+    $country = (isset($actualUser['country'])) ? $actualUser['country'] : '';
+
+    if (!empty($_POST)) {
+        $userManager->updateUser();
+        $success = '<div class="alert alert-success" role="alert">L\'utilisateur été mise à jour</div>';
+    }
+}
 
 ?>
 
 <?php require_once('../Model/header.inc.php'); ?>
 
+<div class="container">
+    <table class="table table-striped">
+        <tr>
+            <th class="text-center">Nom</th>
+            <th class="text-center">Prénom</th>
+            <th class="text-center">Email</th>
+            <th class="text-center">Adresse</th>
+            <th class="text-center">Ville</th>
+            <th class="text-center">Code postal</th>
+            <th class="text-center">N°téléphone</th>
+            <th class="text-center">Date de naissance</th>
+            <th class="text-center">Pays</th>
+            <th class="text-center">Update</th>
+            <th class="text-center">Delete</th>
+            <th class="text-center">Réservation</th>
+        </tr>
+        <?php while ($row = $allUsers->fetch(PDO::FETCH_ASSOC)) { ?>
+            <tr>
+                <td class="text-center"> <?php echo $row["lastname"]; ?></td>
+                <td class="text-center"> <?php echo $row["firstname"]; ?></td>
+                <td class="text-center"> <?php echo $row["mail"]; ?></td>
+                <td class="text-center"> <?php echo $row["address"]; ?></td>
+                <td class="text-center"> <?php echo $row["city"]; ?></td>
+                <td class="text-center"> <?php echo $row["zipcode"]; ?></td>
+                <td class="text-center"> <?php echo $row["phone"]; ?></td>
+                <td class="text-center"> <?php echo $row["birthdate"]; ?></td>
+                <td class="text-center"> <?php echo $row["country"]; ?></td>
+                <td class="text-center"><a href="<?php echo "?action=update&id_cli=$row[id_cli]"; ?>"> Update</a></td>
+                <td class="text-center"><a href="<?php echo "?action=delete&id_cli=$row[id_cli]"; ?>"> Delete</a></td>
+                <td class="text-center"><?php echo "<a href=admin_reservation.php>Réservation</a>" ?></td>
+            </tr>
+        <?php } ?>
+    </table>
+</div>
 <h1>Inscription</h1>
 <?php echo $success; ?>
 <div>
