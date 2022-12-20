@@ -46,7 +46,7 @@ $allUsers = $userManager->getAllUsers();
 // DELETE USER
 if (isset($_GET['action']) && $_GET['action'] == 'delete') {
     $delUser = $userManager->deleteUser();
-    header('location:signup.php');
+    header('location:admin_users.php');
 }
 
 // UPDATE USER

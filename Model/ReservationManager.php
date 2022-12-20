@@ -30,7 +30,11 @@ class ReservationManager
 
     public function getAllReservationByUser()
     {
-        $req = $this->dataBase->query("SELECT * FROM reservation WHERE id_cli = '$_GET[id_cli]'");
+        $req = $this->dataBase->query("SELECT *, client.lastname,  client.firstname               
+                                        FROM reservation
+                                        INNER JOIN client 
+                                        ON reservation.id_cli = client.id_cli
+                                        ");
         return $req;
     }
 

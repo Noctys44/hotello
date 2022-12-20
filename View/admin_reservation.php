@@ -14,6 +14,7 @@ $success = "";
 $reservationManager = new ReservationManager($pdo);
 $showById = $reservationManager->getAllReservationByUser();
 
+
 // UPDATE RESERVATION
 if (isset($_GET['action']) && $_GET['action'] == "update") {
 
@@ -32,7 +33,7 @@ if (isset($_GET['action']) && $_GET['action'] == "update") {
 
 // DELETE RESERVATION
 if (isset($_GET['action']) && $_GET['action'] == "delete") {
-    $update = $reservationManager->deleteReservation();
+    $delete = $reservationManager->deleteReservation();
 }
 
 
@@ -42,14 +43,14 @@ if (isset($_GET['action']) && $_GET['action'] == "delete") {
 <?php require_once('../Model/header.inc.php'); ?>
 
 
-<!-- FORM ROOMS -->
+<!-- FORM RESERVATION -->
 
 <div class="container">
     <table class="table table-striped">
         <tr>
             <th class="text-center">Id Reservation</th>
             <th class="text-center">Id Room</th>
-            <th class="text-center">Id Client</th>
+            <th class="text-center">Id client</th>
             <th class="text-center">Début du séjour</th>
             <th class="text-center">Fin du séjour</th>
             <th class="text-center">Nombre d'adultes</th>
