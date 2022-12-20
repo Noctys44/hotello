@@ -25,10 +25,16 @@
                         <a class="nav-link" href="admin_users.php">Clients</a>
                     </li>
                     <li class="nav-item">
+                        <a class="nav-link" href="reviewsPage.php">Avis</a>
+                    </li>
+                    <li class="nav-item">
                         <a class="nav-link" href="roomPage.php">Chambres</a>
                     </li>
                     <li class="nav-item">
                         <a class="nav-link" href="admin_services.php">Services</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="equipmentsPage.php">Equipements</a>
                     </li>
                     <li class="nav-item">
                         <a class="nav-link" href="admin_carrousel.php">Carrousel</a>
