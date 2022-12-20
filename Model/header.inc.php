@@ -13,7 +13,7 @@
 </head>
 
 <body>
-    <nav class="navbar navbar-expand-lg navbar-dark bg-success">
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
         <div class="container-fluid">
             <a class="navbar-brand" href="#">Dashboard admin Hotello</a>
             <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarColor01" aria-controls="navbarColor01" aria-expanded="false" aria-label="Toggle navigation">
@@ -21,27 +21,20 @@
             </button>
             <div class="collapse navbar-collapse" id="navbarColor01">
                 <ul class="navbar-nav me-auto">
-
                     <li class="nav-item">
-                        <a class="nav-link" href="#">Accueil
-                        </a>
+                        <a class="nav-link" href="admin_users.php">Clients</a>
                     </li>
-                        <li class="nav-item">
-                            <a class="nav-link" href="dashboard.php">Dashboard</a>
-                        </li>
-
-                        <li class="nav-item">
-                            <a class="nav-link" href="#">Profil</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link" href="#">Deconnexion</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link" href="#">Inscription</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link" href="#">Connexion</a>
-                        </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="roomPage.php">Chambres</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="admin_services.php">Services</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="admin_carrousel.php">Carrousel</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#">Connexion</a>
                     </li>
                 </ul>
             </div>

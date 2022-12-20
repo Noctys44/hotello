@@ -10,15 +10,18 @@ $adults = "";
 $children = "";
 $success = "";
 
-// SHOW ALL RESERVATIONS BY USERS
+// SHOW ALL RESERVATIONS ROOM BY USERS
 $reservationManager = new ReservationManager($pdo);
-$showById = $reservationManager->getAllReservationByUser();
+$showRoomById = $reservationManager->getAllReservationRoomByUser();
+
+// SHOW ALL RESERVATION SERVICES BY USERS
+$showServiceById = $reservationManager->getAllReservationServicesByUser();
 
 
 // UPDATE RESERVATION
 if (isset($_GET['action']) && $_GET['action'] == "update") {
 
-    $inputReservation = $reservationManager->getByIdReservation();
+    $inputReservation = $reservationManager->getByIdReservationRoom();
     $actualReservation = $inputReservation->fetch(PDO::FETCH_ASSOC);
 
     $start_date = (isset($actualReservation['start_date'])) ? $actualReservation['start_date'] : '';
@@ -31,9 +34,14 @@ if (isset($_GET['action']) && $_GET['action'] == "update") {
     }
 }
 
-// DELETE RESERVATION
+// DELETE RESERVATION ROOM
 if (isset($_GET['action']) && $_GET['action'] == "delete") {
-    $delete = $reservationManager->deleteReservation();
+    $delete = $reservationManager->deleteReservationRoom();
+}
+
+// DELETE RESERVATION SERVICES
+if (isset($_GET['action']) && $_GET['action'] == "delete") {
+    $delete = $reservationManager->deleteReservationServices();
 }
 
 
@@ -43,14 +51,15 @@ if (isset($_GET['action']) && $_GET['action'] == "delete") {
 <?php require_once('../Model/header.inc.php'); ?>
 
 
-<!-- FORM RESERVATION -->
 
 <div class="container">
+    <h1 class="text-center m-3">Réservation des chambres</h1>
     <table class="table table-striped">
         <tr>
             <th class="text-center">Id Reservation</th>
             <th class="text-center">Id Room</th>
-            <th class="text-center">Id client</th>
+            <th class="text-center">Nom du client</th>
+            <th class="text-center">Prénom du client</th>
             <th class="text-center">Début du séjour</th>
             <th class="text-center">Fin du séjour</th>
             <th class="text-center">Nombre d'adultes</th>
@@ -58,11 +67,12 @@ if (isset($_GET['action']) && $_GET['action'] == "delete") {
             <th class="text-center">Update</th>
             <th class="text-center">Delete</th>
         </tr>
-        <?php while ($row = $showById->fetch(PDO::FETCH_ASSOC)) { ?>
+        <?php while ($row = $showRoomById->fetch(PDO::FETCH_ASSOC)) { ?>
             <tr>
                 <td class="text-center"> <?php echo $row["id_reservation"]; ?></td>
                 <td class="text-center"> <?php echo $row["id_room"]; ?></td>
-                <td class="text-center"> <?php echo $row["id_cli"]; ?></td>
+                <td class="text-center"> <?php echo $row["lastname"]; ?></td>
+                <td class="text-center"> <?php echo $row["firstname"]; ?></td>
                 <td class="text-center"> <?php echo $row["start_date"]; ?></td>
                 <td class="text-center"> <?php echo $row["end_date"]; ?></td>
                 <td class="text-center"> <?php echo $row["adults"]; ?></td>
@@ -76,6 +86,7 @@ if (isset($_GET['action']) && $_GET['action'] == "delete") {
 <div class="container">
     <div class="row justify-content-center">
         <div class="col-8">
+            <h2 class="text-center m-3">Modifier une réservation</h2>
 
 
             <form action="" method="POST">
@@ -114,13 +125,37 @@ if (isset($_GET['action']) && $_GET['action'] == "delete") {
 
 
                 <div class="mb-3">
-                    <input type="submit" class="btn btn-primary" value="Réserver">
+                    <input type="submit" class="btn btn-primary" value="Modifier">
                 </div>
 
             </form>
 
         </div>
     </div>
+</div>
+
+<div class="container">
+    <h1 class="text-center m-3">Réservation des services</h1>
+    <table class="table table-striped">
+        <tr>
+            <th class="text-center">Id réservation service</th>
+            <th class="text-center">Id Room</th>
+            <th class="text-center">Icone du service</th>
+            <th class="text-center">Nom du client</th>
+            <th class="text-center">Prénom du client</th>
+            <th class="text-center">Delete</th>
+        </tr>
+        <?php while ($row = $showServiceById->fetch(PDO::FETCH_ASSOC)) { ?>
+            <tr>
+                <td class="text-center"> <?php echo $row["id_res_services"]; ?></td>
+                <td class="text-center"> <?php echo $row["id_room"]; ?></td>
+                <td class="text-center"> <?php echo "<img src='$row[icon]' width='50px'>"; ?></td>
+                <td class="text-center"> <?php echo $row["lastname"]; ?></td>
+                <td class="text-center"> <?php echo $row["firstname"]; ?></td>
+                <td class="text-center"><a href="<?php echo "?action=delete&id_cli=$row[id_cli]&id_res_services=$row[id_res_services]"; ?>" class="btn btn-danger"> Delete</a></td>
+            </tr>
+        <?php } ?>
+    </table>
 </div>
 
 <?php require_once('../Model/footer.inc.php'); ?>

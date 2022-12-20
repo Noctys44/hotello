@@ -54,6 +54,8 @@ class RoomManager
         $req->bindValue(':children',  $_POST['children'], PDO::PARAM_INT);
         $req->bindValue(':status',  $_POST['status'], PDO::PARAM_STR);
         $req->execute();
+
+        header('location:roomPage.php');
     }
 
     public function updateRoom()

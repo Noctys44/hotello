@@ -56,6 +56,7 @@ if (isset($_GET['action']) && $_GET['action'] == "delete") {
 <?php require_once('../Model/header.inc.php'); ?>
 
 <div class="container">
+    <h1 class="text-center m-3">Gestion des services</h1>
     <table class="table table-striped">
         <tr>
             <th class="text-center">Id Services</th>
@@ -72,7 +73,7 @@ if (isset($_GET['action']) && $_GET['action'] == "delete") {
                 <td class="text-center"> <?php echo "<img src='$row[icon]' width='50px'>"; ?></td>
                 <td class="text-center"> <?php echo $row["name"]; ?></td>
                 <td class="text-center"> <?php echo $row["description"]; ?></td>
-                <td class="text-center"> <?php echo $row["price"]; ?></td>
+                <td class="text-center"> <?php echo $row["price"]; ?> €</td>
                 <td class="text-center"><a href="<?php echo "?action=update&id_services=$row[id_services]"; ?>" class="btn btn-warning"> Update</a></td>
                 <td class="text-center"><a href="<?php echo "?action=delete&id_services=$row[id_services]"; ?>" class="btn btn-danger"> Delete</a></td>
             </tr>
@@ -111,7 +112,7 @@ if (isset($_GET['action']) && $_GET['action'] == "delete") {
 
                 <div class="mb-3">
                     <label for="description" class="form-label">Description</label>
-                    <textarea name="description" id="description" cols="30" rows="10" class="form-control"><?= $description ?></textarea>
+                    <textarea name="description" id="description" cols="10" rows="5" class="form-control"><?= $description ?></textarea>
                 </div>
 
                 <div class="mb-3">

@@ -12,7 +12,7 @@ class ReservationManager
         $this->dataBase = $dataBase;
     }
 
-    public function getByIdReservation()
+    public function getByIdReservationRoom()
     {
         $reqId = $this->dataBase->query("SELECT * FROM reservation WHERE id_reservation = '$_GET[id_reservation]'");
         return $reqId;
@@ -28,13 +28,24 @@ class ReservationManager
         $req->execute();
     }
 
-    public function getAllReservationByUser()
+    public function getAllReservationRoomByUser()
     {
-        $req = $this->dataBase->query("SELECT *, client.lastname,  client.firstname               
-                                        FROM reservation
-                                        INNER JOIN client 
+        $req = $this->dataBase->query("SELECT * FROM reservation
+                                        INNER JOIN client
                                         ON reservation.id_cli = client.id_cli
+                                        WHERE client.id_cli = '$_GET[id_cli]' 
                                         ");
+        return $req;
+    }
+
+    public function getAllReservationServicesByUser()
+    {
+        $req = $this->dataBase->query("SELECT * FROM room_services 
+                                        INNER JOIN services
+                                        ON room_services.id_services = services.id_services
+                                        INNER JOIN client
+                                        ON room_services.id_cli = client.id_cli
+                                        WHERE client.id_cli = '$_GET[id_cli]'");
         return $req;
     }
 
@@ -53,11 +64,21 @@ class ReservationManager
         }
     }
 
-    public function deleteReservation()
+    public function deleteReservationRoom()
     {
         $delete = $this->dataBase->query("DELETE FROM reservation WHERE id_reservation = '$_GET[id_reservation]'");
 
         $getReservation =  $this->dataBase->query("SELECT * FROM reservation WHERE id_cli = '$_GET[id_cli]'");
+        while ($row = $getReservation->fetch(PDO::FETCH_ASSOC)) {
+            header("location:admin_reservation.php?id_cli=$row[id_cli]");
+        }
+    }
+
+    public function deleteReservationServices()
+    {
+        $delete = $this->dataBase->query("DELETE FROM room_services WHERE id_res_services = '$_GET[id_res_services]'");
+
+        $getReservation =  $this->dataBase->query("SELECT * FROM room_services WHERE id_cli = '$_GET[id_cli]'");
         while ($row = $getReservation->fetch(PDO::FETCH_ASSOC)) {
             header("location:admin_reservation.php?id_cli=$row[id_cli]");
         }

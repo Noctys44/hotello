@@ -58,7 +58,7 @@ class UserManager
         $updateUser->bindValue(':country', $_POST['country'], PDO::PARAM_STR);
         $updateUser->execute();
 
-        header('location:signup.php');
+        header('location:admin_users.php');
     }
 
     public function deleteUser()

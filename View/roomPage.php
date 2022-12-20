@@ -61,24 +61,14 @@ if (!empty($_POST) && !isset($_GET['action']) && !isset($_GET['action']) == 'upd
     );
 
     $room->insertRoom($adRoom);
-    $success = '<div class="alert alert-success" role="alert">L\'utilisateur a bien été enregistré</div>';
+    $success = '<div class="alert alert-success" role="alert">La chambre a bien été enregistrée</div>';
 }
 
 
 
 ?>
 
-<!DOCTYPE html>
-<html lang="en">
-
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Rooms</title>
-    <!-- CSS only -->
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-rbsA2VBKQhggwzxH7pPCaAqO46MgnOM80zW1RWuH61DGLwZJEdK2Kadq2F9CUG65" crossorigin="anonymous">
-</head>
+<?php require_once('../Model/header.inc.php') ?>
 
 <body>
 
@@ -88,6 +78,7 @@ if (!empty($_POST) && !isset($_GET['action']) && !isset($_GET['action']) == 'upd
             <div class="col-10 table-responsive">
 
                 <?php echo $success; ?>
+                <h1 class="text-center m-3">Gestion des chambres</h1>
 
                 <table class="table">
                     <!-- <caption>Liste des chambres</caption> -->
@@ -144,6 +135,8 @@ if (!empty($_POST) && !isset($_GET['action']) && !isset($_GET['action']) == 'upd
     <div class="container">
         <div class="row justify-content-center">
             <div class="col-8">
+
+                <h1 class="text-center m-3">Modification de la chambre</h1>
 
 
                 <form action="" method="POST">
@@ -205,7 +198,7 @@ if (!empty($_POST) && !isset($_GET['action']) && !isset($_GET['action']) == 'upd
         </div>
     </div>
 
-
+    <?php require_once('../Model/footer.inc.php') ?>
 
 </body>
 
