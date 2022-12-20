@@ -73,8 +73,8 @@ if (isset($_GET['action']) && $_GET['action'] == "delete") {
                 <td class="text-center"> <?php echo $row["name"]; ?></td>
                 <td class="text-center"> <?php echo $row["description"]; ?></td>
                 <td class="text-center"> <?php echo $row["price"]; ?></td>
-                <td class="text-center"><a href="<?php echo "?action=update&id_services=$row[id_services]"; ?>"> Update</a></td>
-                <td class="text-center"><a href="<?php echo "?action=delete&id_services=$row[id_services]"; ?>"> Delete</a></td>
+                <td class="text-center"><a href="<?php echo "?action=update&id_services=$row[id_services]"; ?>" class="btn btn-warning"> Update</a></td>
+                <td class="text-center"><a href="<?php echo "?action=delete&id_services=$row[id_services]"; ?>" class="btn btn-danger"> Delete</a></td>
             </tr>
         <?php } ?>
     </table>
@@ -111,7 +111,7 @@ if (isset($_GET['action']) && $_GET['action'] == "delete") {
 
                 <div class="mb-3">
                     <label for="description" class="form-label">Description</label>
-                    <textarea name="description" id="description" cols="30" rows="10" class="form-control" value="<?= $description ?>"></textarea>
+                    <textarea name="description" id="description" cols="30" rows="10" class="form-control"><?= $description ?></textarea>
                 </div>
 
                 <div class="mb-3">

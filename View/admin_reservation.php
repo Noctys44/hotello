@@ -67,8 +67,8 @@ if (isset($_GET['action']) && $_GET['action'] == "delete") {
                 <td class="text-center"> <?php echo $row["end_date"]; ?></td>
                 <td class="text-center"> <?php echo $row["adults"]; ?></td>
                 <td class="text-center"> <?php echo $row["children"]; ?></td>
-                <td class="text-center"><a href="<?php echo "?action=update&id_cli=$row[id_cli]&id_reservation=$row[id_reservation]"; ?>"> Update</a></td>
-                <td class="text-center"><a href="<?php echo "?action=delete&id_cli=$row[id_cli]&id_reservation=$row[id_reservation]"; ?>"> Delete</a></td>
+                <td class="text-center"><a href="<?php echo "?action=update&id_cli=$row[id_cli]&id_reservation=$row[id_reservation]"; ?>" class="btn btn-warning"> Update</a></td>
+                <td class="text-center"><a href="<?php echo "?action=delete&id_cli=$row[id_cli]&id_reservation=$row[id_reservation]"; ?>" class="btn btn-danger"> Delete</a></td>
             </tr>
         <?php } ?>
     </table>
