@@ -23,7 +23,7 @@ class UserManager extends User
         $req->bindValue(':city', $user->getCity());
         $req->bindValue(':zipcode', $user->getZipcode(), PDO::PARAM_INT);
         $req->bindValue(':phone', $user->getPhone());
-        $req->bindValue(':birthdate', $_POST['birthdate']);
+        $req->bindValue(':birthdate', $user->getBirthdate());
         $req->bindValue(':country', $user->getCountry());
         $req->execute();
 

@@ -47,7 +47,7 @@ class User
 
     public function setFirstname($firstname)
     {
-        if (empty($firstname) || !is_string($firstname) || strlen($firstname) <= 3 || strlen($firstname) >= 25) {
+        if (empty($firstname) || !is_string($firstname) || strlen($firstname) <= 2 || strlen($firstname) >= 25) {
             $this->erreur[] = self::FIRSTNAME_INVALIDE;
             // echo '<div class="form-text text-danger fw-bold"> Le prénom est invalide </div>';
         } else {
@@ -118,17 +118,9 @@ class User
         }
     }
 
-    public function setBirhtdate($birthdate)
+    public function setBirthdate($birthdate)
     {
-
-        $currentDate = 2022;
-
-        if (empty($birthdate) || $currentDate - 100) {
-            $this->erreur[] = self::BIRTHDATE_INVALIDE;
-        } else {
-
-            $this->birthdate = $birthdate;
-        }
+        $this->birthdate = $birthdate;
     }
 
     public function setCountry($country)
@@ -213,7 +205,7 @@ class User
     // Function validate User
     public function isUserValid()
     {
-        return !(empty($this->lastname) || empty($this->firstname) || empty($this->mail) || !empty($this->password) || empty($this->address) || empty($this->city) || empty($this->zipcode) || empty($this->phone) || empty($this->birthdate) || empty($this->country));
-        // return !(empty($_POST['lastname']) || empty($_POST['firstname']) || empty($_POST['mail']) || !empty($_POST['password']) || empty($_POST['address']) || empty($_POST['city']) || empty($_POST['zipcode']) || empty($_POST['phone']) || empty($_POST['birthdate']) || empty($_POST['country']));
+        return !(empty($this->lastname) || empty($this->firstname) || empty($this->mail) || empty($this->password) || empty($this->address) || empty($this->city) || empty($this->zipcode) || empty($this->phone) || empty($this->birthdate) || empty($this->country));
+        // return !(empty($_POST['lastname']) || empty($_POST['firstname']) || empty($_POST['mail']) || empty($_POST['password']) || empty($_POST['address']) || empty($_POST['city']) || empty($_POST['zipcode']) || empty($_POST['phone']) || empty($_POST['birthdate']) || empty($_POST['country']));
     }
 }
