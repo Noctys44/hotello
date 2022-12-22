@@ -35,14 +35,14 @@ if ($_POST) {
         $success = '<div class="alert alert-success" role="alert">L\'utilisateur a bien été enregistré</div>';
     } else {
         $erreurs = $user->getErreurs();
-        // var_dump($erreurs);
+        var_dump($erreurs);
     }
     if (isset($erreurs)) {
         echo '<div class="form-text text-danger fw-bold"> Le nom est invalide </div>';
     }
 }
 
-// $userManager->insertUser($userNew);
+// $userManager->insertUser($user);
 
 
 
@@ -57,11 +57,12 @@ if ($_POST) {
         <label for="lastname" class="form-label">Votre nom :</label>
         <input type="text" name="lastname" id="lastname" class="form-control">
         <div id="lastname" class="form-text">
-            <?php if (isset($erreurs) && in_array(User::LASTNAME_INVALIDE, $erreurs)) {
-                print_r($erreurs);
+            <?php if ($erreurs && in_array(User::LASTNAME_INVALIDE, $erreurs)) {
+                // print_r($erreurs);
                 echo '<div class="form-text text-danger fw-bold"> Le nom est invalide </div>';
             } else {
                 // var_dump($erreurs);
+                // print_r($erreurs);
                 echo 'ok';
             }
             // var_dump($erreurs);
