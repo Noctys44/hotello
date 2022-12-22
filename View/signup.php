@@ -6,23 +6,13 @@ require_once('../Model/init.php');
 
 $userManager = new UserManager($pdo);
 
-$lastname = "";
-$firstname = "";
-$mail = "";
-$password = "";
-$address = "";
-$city = "";
-$zipcode = "";
-$phone = "";
-$birthdate = "";
-$country = "";
-$success = "";
+$success = '';
 
 
 // INSERT USER
-if (!empty($_POST) && !isset($_GET['action']) && !isset($_GET['action']) == 'update') {
+if ($_POST) {
 
-    $userNew = new User(
+    $user = new User(
         [
             'lastname' => $_POST['lastname'],
             'firstname' => $_POST['firstname'],
@@ -36,8 +26,19 @@ if (!empty($_POST) && !isset($_GET['action']) && !isset($_GET['action']) == 'upd
             'country' => $_POST['country'],
         ]
     );
-    $userManager->insertUser($userNew);
+
+    if (isset($_POST)) {
+        // var_dump($user);
+        $userManager->insertUser($user);
+        $success = '<div class="alert alert-success" role="alert">L\'utilisateur a bien été enregistré</div>';
+    } else {
+        $erreurs = $user->getErreurs();
+        // var_dump($erreurs);
+    }
 }
+
+// $userManager->insertUser($userNew);
+
 
 
 ?>
@@ -45,74 +46,107 @@ if (!empty($_POST) && !isset($_GET['action']) && !isset($_GET['action']) == 'upd
 <?php require_once('../Model/header.inc.php'); ?>
 
 <h1>Inscription</h1>
-<?php echo $success; ?>
+<?php if (isset($message)) echo $success; ?>
 <div>
     <form action="" method="POST">
         <label for="lastname" class="form-label">Votre nom :</label>
-        <input type="text" name="lastname" id="lastname" class="form-control" value="<?= $lastname ?>">
-        <?php if (isset($erreurs) && in_array(User::LASTNAME_INVALIDE, $erreurs))
-            echo '<div class="form-text text-danger fw-bold"> Le nom est invalide </div>';
-        ?>
+        <input type="text" name="lastname" id="lastname" class="form-control">
+        <div id="lastname" class="form-text">
+            <?php if (isset($erreurs) && in_array(User::LASTNAME_INVALIDE, $erreurs)) {
+                echo '<div class="form-text text-danger fw-bold"> Le nom est invalide </div>';
+            } else {
+
+                echo 'ok';
+            }
+            // var_dump($erreurs);
+            //     print_r($erreurs);
+            // echo '<div class="form-text text-danger fw-bold"> Le nom est invalide </div>';
+            ?>
+        </div>
 
         <label for="firstname" class="form-label">Votre prénom :</label>
-        <input type="text" name="firstname" id="firstname" class="form-control" value="<?= $firstname ?>">
-        <?php if (isset($erreurs) && in_array(User::FIRSTNAME_INVALIDE, $erreurs))
-            echo '<div class="form-text text-danger fw-bold"> Le nom est invalide </div>';
-        ?>
+        <input type="text" name="firstname" id="firstname" class="form-control">
+        <div id="firstname" class="form-text">
+            <?php if (isset($erreurs) && in_array(User::FIRSTNAME_INVALIDE, $erreurs))
+                print_r($erreurs);
+            echo '<div class="form-text text-danger fw-bold"> Le prénom est invalide </div>';
+            ?>
+        </div>
 
         <label for="mail" class="form-label">Votre email :</label>
-        <input type="email" name="mail" id="mail" class="form-control" value="<?= $mail ?>">
-        <?php if (isset($erreurs) && in_array(User::MAIL_INVALIDE, $erreurs))
-            echo '<div class="form-text text-danger fw-bold"> Le nom est invalide </div>';
-        ?>
+        <input type="email" name="mail" id="mail" class="form-control">
+        <div id="mail" class="form-text">
+            <?php if (isset($erreurs) && in_array(User::MAIL_INVALIDE, $erreurs))
+                print_r($erreurs);
+            echo '<div class="form-text text-danger fw-bold"> L\'email est invalide </div>';
+            ?>
+        </div>
 
         <label for="password" class="form-label">Votre mot de passe :</label>
         <input type="password" name="password" id="password" class="form-control">
-        <?php if (isset($erreurs) && in_array(User::PASSWORD_INVALIDE, $erreurs))
-            echo '<div class="form-text text-danger fw-bold"> Le nom est invalide </div>';
-        ?>
+        <div id="password" class="form-text">
+            <?php if (isset($erreurs) && in_array(User::PASSWORD_INVALIDE, $erreurs))
+                print_r($erreurs);
+            echo '<div class="form-text text-danger fw-bold"> Le mdp est invalide </div>';
+            ?>
+        </div>
 
         <label for="address" class="form-label">Votre adresse :</label>
-        <input type="text" name="address" id="address" class="form-control" value="<?= $address ?>">
-        <?php if (isset($erreurs) && in_array(User::ADDRESS_INVALIDE, $erreurs))
-            echo '<div class="form-text text-danger fw-bold"> Le nom est invalide </div>';
-        ?>
+        <input type="text" name="address" id="address" class="form-control">
+        <div id="address" class="form-text">
+            <?php if (isset($erreurs) && in_array(User::ADDRESS_INVALIDE, $erreurs))
+                print_r($erreurs);
+            echo '<div class="form-text text-danger fw-bold"> L\'adresse est invalide </div>';
+            ?>
+        </div>
 
         <label for="city" class="form-label">Votre ville :</label>
-        <input type="text" name="city" id="city" class="form-control" value="<?= $city ?>">
-        <?php if (isset($erreurs) && in_array(User::CITY_INVALIDE, $erreurs))
-            echo '<div class="form-text text-danger fw-bold"> Le nom est invalide </div>';
-        ?>
+        <input type="text" name="city" id="city" class="form-control">
+        <div id="city" class="form-text">
+            <?php if (isset($erreurs) && in_array(User::CITY_INVALIDE, $erreurs))
+                print_r($erreurs);
+            echo '<div class="form-text text-danger fw-bold"> La ville est invalide </div>';
+            ?>
+        </div>
 
         <label for="zipcode" class="form-label">Votre code postal:</label>
-        <input type="text" name="zipcode" id="zipcode" class="form-control" value="<?= $zipcode ?>">
-        <?php if (isset($erreurs) && in_array(User::ZIPCODE_INVALIDE, $erreurs))
-            echo '<div class="form-text text-danger fw-bold"> Le nom est invalide </div>';
-        ?>
+        <input type="text" name="zipcode" id="zipcode" class="form-control">
+        <div id="zipcode" class="form-text">
+            <?php if (isset($erreurs) && in_array(User::ZIPCODE_INVALIDE, $erreurs))
+                print_r($erreurs);
+            echo '<div class="form-text text-danger fw-bold"> Le code postal est invalide </div>';
+            ?>
+        </div>
 
         <label for="phone" class="form-label">Votre numéro de téléphone :</label>
-        <input type="text" name="phone" id="phone" class="form-control" value="<?= $phone ?>">
-        <?php if (isset($erreurs) && in_array(User::PHONE_INVALIDE, $erreurs))
-            echo '<div class="form-text text-danger fw-bold"> Le nom est invalide </div>';
-        ?>
+        <input type="text" name="phone" id="phone" class="form-control">
+        <div id="phone" class="form-text">
+            <?php if (isset($erreurs) && in_array(User::PHONE_INVALIDE, $erreurs))
+                print_r($erreurs);
+            echo '<div class="form-text text-danger fw-bold"> Le numéro est invalide </div>';
+            ?>
+        </div>
 
         <label for="birthdate" class="form-label">Votre date de naissance :</label>
-        <input type="date" name="birthdate" id="birthdate" class="form-control" value="<?= $birthdate ?>">
-        <?php if (isset($erreurs) && in_array(User::BIRTHDATE_INVALIDE, $erreurs))
-            echo '<div class="form-text text-danger fw-bold"> Le nom est invalide </div>';
-        ?>
+        <input type="date" name="birthdate" id="birthdate" class="form-control">
+        <div id="birthdate" class="form-text">
+            <?php if (isset($erreurs) && in_array(User::BIRTHDATE_INVALIDE, $erreurs))
+                print_r($erreurs);
+            echo '<div class="form-text text-danger fw-bold"> La date est invalide </div>';
+            ?>
+        </div>
 
         <label for="country" class="form-label">Votre pays :</label>
-        <input type="text" name="country" id="country" class="form-control" value="<?= $country ?>">
-        <?php if (isset($erreurs) && in_array(User::COUNTRY_INVALIDE, $erreurs))
-            echo '<div class="form-text text-danger fw-bold"> Le nom est invalide </div>';
-        ?>
+        <input type="text" name="country" id="country" class="form-control">
+        <div id="country" class="form-text">
+            <?php if (isset($erreurs) && in_array(User::COUNTRY_INVALIDE, $erreurs))
+                print_r($erreurs);
+            echo '<div class="form-text text-danger fw-bold"> Le pays est invalide </div>';
+            ?>
+        </div>
 
-        <?php if (isset($_GET['action']) && $_GET['action'] == 'update') : ?>
-            <input type="submit" value="Valider la modification" class="btn btn-lg btn-info">
-        <?php else : ?>
-            <input type="submit" value="S'inscrire" class="btn btn-lg btn-info">
-        <?php endif ?>
+        <input type="submit" value="S'inscrire" class="btn btn-primary">
+
 
     </form>
 </div>

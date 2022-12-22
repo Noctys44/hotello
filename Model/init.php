@@ -15,5 +15,7 @@ try {
 }
 return $pdo;
 
+// var_dump($pdo);
+
 define('URL', 'http://localhost/hotello/');
 define('RACINE', $_SERVER['DOCUMENT_ROOT'] . '/hotello/');

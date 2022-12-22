@@ -3,7 +3,7 @@
 require_once('User.php');
 
 
-class UserManager
+class UserManager extends User
 {
     private $dataBase;
 
@@ -14,9 +14,6 @@ class UserManager
 
     public function insertUser(User $user)
     {
-
-        // $mdp = password_hash($password, PASSWORD_DEFAULT);
-
         $req = $this->dataBase->prepare("INSERT INTO client(lastname, firstname, mail, password, address, city, zipcode, phone, birthdate, country) VALUES(:lastname, :firstname, :mail, :password, :address, :city, :zipcode, :phone, :birthdate, :country)");
         $req->bindValue(':lastname', $user->getLastname(), PDO::PARAM_STR);
         $req->bindValue(':firstname', $user->getFirstname());
@@ -24,11 +21,13 @@ class UserManager
         $req->bindValue(':password', $user->getPassword());
         $req->bindValue(':address', $user->getAddress());
         $req->bindValue(':city', $user->getCity());
-        $req->bindValue(':zipcode', $user->getZipcode());
+        $req->bindValue(':zipcode', $user->getZipcode(), PDO::PARAM_INT);
         $req->bindValue(':phone', $user->getPhone());
         $req->bindValue(':birthdate', $_POST['birthdate']);
         $req->bindValue(':country', $user->getCountry());
         $req->execute();
+
+        // header('location:signup.php');
     }
 
     public function getAllUsers()
