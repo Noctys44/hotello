@@ -68,7 +68,8 @@ class User
 
     public function setPassword($password)
     {
-        if (empty($password) || strlen($password) <= 8 || strlen($password) >= 20) {
+        $reg = "#^(?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?=.*[a-zA-Z]).{8,20}$#";
+        if (empty($password) || !preg_match($reg, $password)) {
             $this->erreurs[] = self::PASSWORD_INVALIDE;
         } else {
             $mdp = htmlspecialchars(addslashes(trim($_POST['password'])));
