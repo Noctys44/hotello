@@ -14,8 +14,7 @@ class User
     const CITY_INVALIDE = 6;
     const ZIPCODE_INVALIDE = 7;
     const PHONE_INVALIDE = 8;
-    const BIRTHDATE_INVALIDE = 9;
-    const COUNTRY_INVALIDE = 10;
+    const COUNTRY_INVALIDE = 9;
 
 
     public function __construct(array $data)
