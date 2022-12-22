@@ -5,7 +5,7 @@ require_once('../Model/UserManager.php');
 require_once('../Model/init.php');
 
 $userManager = new UserManager($pdo);
-
+$message = '';
 $success = '';
 
 
@@ -29,20 +29,13 @@ if ($_POST) {
 
 
     if ($user->isUserValid()) {
-        // var_dump($user->isUserValid());
         $userManager->insertUser($user);
-        // var_dump($userManager->insertUser($user));
         $success = '<div class="alert alert-success" role="alert">L\'utilisateur a bien été enregistré</div>';
+        // header('location:signin.php');
     } else {
         $erreurs = $user->getErreurs();
-        // var_dump($erreurs);
     }
-    // if (isset($erreurs)) {
-    //     echo '<div class="form-text text-danger fw-bold"> Le nom est invalide </div>';
-    // }
 }
-
-// $userManager->insertUser($user);
 
 
 
