@@ -1,8 +1,8 @@
 <?php
 
-require_once('../Model/User.php');
-require_once('../Model/UserManager.php');
-require_once('../Model/init.php');
+require_once('../Models/User.php');
+require_once('../Models/UserManager.php');
+require_once('../Models/pdo.php');
 
 $userManager = new UserManager($pdo);
 
@@ -18,26 +18,6 @@ $birthdate = "";
 $country = "";
 $success = "";
 
-
-// INSERT USER
-// if (!empty($_POST) && !isset($_GET['action']) && !isset($_GET['action']) == 'update') {
-
-//     $userNew = new User(
-//         [
-//             'lastname' => $_POST['lastname'],
-//             'firstname' => $_POST['firstname'],
-//             'mail' => $_POST['mail'],
-//             'password' => $_POST['password'],
-//             'address' => $_POST['address'],
-//             'city' => $_POST['city'],
-//             'zipcode' => $_POST['zipcode'],
-//             'phone' => $_POST['phone'],
-//             'birthdate' => $_POST['birthdate'],
-//             'country' => $_POST['country'],
-//         ]
-//     );
-//     $userManager->insertUser($userNew);
-// }
 
 // SHOW ALL USERS
 $allUsers = $userManager->getAllUsers();
@@ -72,7 +52,7 @@ if (isset($_GET['action']) && $_GET['action'] == 'update') {
 
 ?>
 
-<?php require_once('../Model/header.inc.php'); ?>
+<?php require_once('../Models/header.inc.php'); ?>
 
 <div class="container">
     <h1 class="text-center m-3">Gestion des clients</h1>
@@ -157,9 +137,6 @@ if (isset($_GET['action']) && $_GET['action'] == 'update') {
 
         <label for="birthdate" class="form-label">Date de naissance :</label>
         <input type="date" name="birthdate" id="birthdate" class="form-control" value="<?= $birthdate ?>">
-        <?php if (isset($erreurs) && in_array(User::BIRTHDATE_INVALIDE, $erreurs))
-            echo '<div class="form-text text-danger fw-bold"> Le nom est invalide </div>';
-        ?>
 
         <label for="country" class="form-label">Pays :</label>
         <input type="text" name="country" id="country" class="form-control" value="<?= $country ?>">
@@ -171,4 +148,4 @@ if (isset($_GET['action']) && $_GET['action'] == 'update') {
 
     </form>
 </div>
-<?php require_once('../Model/footer.inc.php'); ?>
+<?php require_once('../Models/footer.inc.php'); ?>

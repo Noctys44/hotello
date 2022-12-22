@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      rel="stylesheet"
+      href="https://fonts.googleapis.com/css2?family=Bebas+Neue&display=swap"
+    />
+    <link rel="stylesheet" href="./assets/css/style.css" />
+    <title>Hotello | Chambre</title>
+  </head>
+  <body>
+    <header>
+      <div id="topHead">
+        <img
+          src="./assets/img/logoBig.png"
+          alt="Logo de Hotello"
+          id="logoBig"
+        />
+        <nav>
+          <ul>
+            <li><a class="1" href="index.html">ACCUEIL</a></li>
+            <li><a class="1" href="#">SERVICES</a></li>
+            <li><a class="1" href="#">CHAMBRES</a></li>
+            <li><a href="#">CONTACT</a></li>
+          </ul>
+        </nav>
+        <a href="#" class="connexion">CONNEXION</a>
+      </div>
+      <div id="bottomHead">
+        <h1>HOTELLO</h1>
+        <h5>Le plus bel endroit du monde</h5>
+      </div>
+    </header>
+    <div class="container">
+      <div class="room2">
+        <img
+          src="./assets/img/chambres/chambreLuxe1.jpeg"
+          alt="chambre de luxe"
+          class="roomImg"
+        />
+        <div class="roomInfo">
+          <h3>Chambre de luxe</h3>
+          <span>à partir de 650€</span>
+          <p>
+            Lorem ipsum dolor sit amet consectetur adipisicing elit. Vitae quod
+            repellat nihil inventore corporis recusandae fugit culpa nisi
+            tenetur accusamus itaque velit voluptas, nobis alias vero aliquid
+            mollitia ipsum dolorum!
+          </p>
+        </div>
+      </div>
+      <div class="bookForm">
+        <h3>Réserver</h3>
+        <form action="">
+          <label for="arrived">Arrivée</label>
+          <input type="date" name="arrived" />
+          <label for="departure">Départ</label>
+          <input type="date" name="departure" />
+          <label for="adults">Adultes</label>
+          <select name="adults">
+            <option value="1">1</option>
+            <option value="2">2</option>
+            <option value="3">3</option>
+            <option value="4">4</option>
+          </select>
+          <label for="children">Enfants</label>
+          <select name="children">
+            <option value="0">0</option>
+            <option value="1">1</option>
+            <option value="2">2</option>
+          </select>
+          <input type="submit" value="Réserver" />
+        </form>
+      </div>
+    </div>
+
+    <footer>
+      <div id="footerInfo">
+        <ul>
+          <li><a class="footerLinks" href="#">Accueil</a></li>
+          <li><a class="footerLinks" href="#">Chambres</a></li>
+          <li><a class="footerLinks" href="#">Services</a></li>
+          <li><a class="footerLinks" href="#">Contact</a></li>
+        </ul>
+      </div>
+
+      <img src="./assets/img/logoBig.png" alt="Logo de Hotello" id="logoBig" />
+
+      <div id="footerSocial">
+        <h3>ADRESSE</h3>
+        <span>
+          10 rue des boulets <br />
+          75008 PARIS
+        </span>
+        <h3>CONTACT</h3>
+        <span> 01 ** ** ** ** <br /></span>
+        <h3>SUIVEZ-NOUS</h3>
+        <div id="social">
+          <a href="#"
+            ><img src="./assets/img/facebook.svg" alt="logo de Facebook"
+          /></a>
+          <a href="#"
+            ><img src="./assets/img/instagram.svg" alt="logo d'Instagram"
+          /></a>
+          <a href="#"
+            ><img src="./assets/img/twitter.svg" alt="logo de Muskland"
+          /></a>
+        </div>
+      </div>
+    </footer>
+    <script src="./assets/js/script.js"></script>
+  </body>
+</html>

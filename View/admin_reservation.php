@@ -1,8 +1,8 @@
 <?php
 
-require_once('../Model/Reservation.php');
-require_once('../Model/ReservationManager.php');
-require_once('../Model/init.php');
+require_once('../Models/Reservation.php');
+require_once('../Models/ReservationManager.php');
+require_once('../Models/pdo.php');
 
 $start_date = "";
 $end_date = "";
@@ -48,7 +48,7 @@ if (isset($_GET['action']) && $_GET['action'] == "delete") {
 
 ?>
 
-<?php require_once('../Model/header.inc.php'); ?>
+<?php require_once('../Models/header.inc.php'); ?>
 
 
 
@@ -158,4 +158,4 @@ if (isset($_GET['action']) && $_GET['action'] == "delete") {
     </table>
 </div>
 
-<?php require_once('../Model/footer.inc.php'); ?>
+<?php require_once('../Models/footer.inc.php'); ?>

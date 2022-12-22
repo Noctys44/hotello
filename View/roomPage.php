@@ -1,8 +1,8 @@
 <?php
 
-require_once('../Model/init.php');
-require_once('../Model/Room.php');
-require_once('../Model/RoomManager.php');
+require_once('../Models/pdo.php');
+require_once('../Models/Room.php');
+require_once('../Models/RoomManager.php');
 
 $room = new RoomManager($pdo);
 $success = "";
@@ -68,7 +68,7 @@ if (!empty($_POST) && !isset($_GET['action']) && !isset($_GET['action']) == 'upd
 
 ?>
 
-<?php require_once('../Model/header.inc.php') ?>
+<?php require_once('../Models/header.inc.php') ?>
 
 <body>
 
@@ -198,7 +198,7 @@ if (!empty($_POST) && !isset($_GET['action']) && !isset($_GET['action']) == 'upd
         </div>
     </div>
 
-    <?php require_once('../Model/footer.inc.php') ?>
+    <?php require_once('../Models/footer.inc.php') ?>
 
 </body>
 

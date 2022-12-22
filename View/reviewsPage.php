@@ -1,9 +1,9 @@
 <?php
 
 /* REVIEWS */
-require_once('../Model/init.php');
-require_once('../Model/Reviews.php');
-require_once('../Model/ReviewsManager.php');
+require_once('../Models/pdo.php');
+require_once('../Models/Reviews.php');
+require_once('../Models/ReviewsManager.php');
 
 $review = new ReviewsManager($pdo);
 
@@ -61,7 +61,7 @@ if (!empty($_POST) && !isset($_GET['action']) && !isset($_GET['action']) == 'upd
 
 ?>
 
-<?php require_once('../Model/header.inc.php'); ?>
+<?php require_once('../Models/header.inc.php'); ?>
 
 <!-- ---------------------------------------- -->
 <!-- REVIEWS TABLE -->
@@ -240,4 +240,4 @@ if (!empty($_POST) && !isset($_GET['action']) && !isset($_GET['action']) == 'upd
     </div>
 </div>
 
-<?php require_once('../Model/footer.inc.php'); ?>
+<?php require_once('../Models/footer.inc.php'); ?>

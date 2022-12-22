@@ -1,8 +1,8 @@
 <?php
 
-require_once('../Model/Services.php');
-require_once('../Model/ServicesManager.php');
-require_once('../Model/init.php');
+require_once('../Models/Services.php');
+require_once('../Models/ServicesManager.php');
+require_once('../Models/pdo.php');
 
 $icon = "";
 $name = "";
@@ -53,7 +53,7 @@ if (isset($_GET['action']) && $_GET['action'] == "delete") {
 
 ?>
 
-<?php require_once('../Model/header.inc.php'); ?>
+<?php require_once('../Models/header.inc.php'); ?>
 
 <div class="container">
     <h1 class="text-center m-3">Gestion des services</h1>
@@ -130,4 +130,4 @@ if (isset($_GET['action']) && $_GET['action'] == "delete") {
     </div>
 </div>
 
-<?php require_once('../Model/footer.inc.php'); ?>
+<?php require_once('../Models/footer.inc.php'); ?>

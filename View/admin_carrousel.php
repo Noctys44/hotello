@@ -1,8 +1,8 @@
 <?php
 
-require_once('../Model/Carrousel.php');
-require_once('../Model/CarrouselManager.php');
-require_once('../Model/init.php');
+require_once('../Models/Carrousel.php');
+require_once('../Models/CarrouselManager.php');
+require_once('../Models/pdo.php');
 
 $image = "";
 
@@ -45,7 +45,7 @@ if (isset($_GET['action']) && $_GET['action'] == "delete") {
 ?>
 
 
-<?php require_once('../Model/header.inc.php'); ?>
+<?php require_once('../Models/header.inc.php'); ?>
 
 <div class="container">
     <h1 class="text-center m-3">Gestion du carrousel</h1>
@@ -91,7 +91,6 @@ if (isset($_GET['action']) && $_GET['action'] == "delete") {
                     <?php endif;     ?>
                     <input type="hidden" name="image_actuelle" value="<?= $image  ?>"><br>
                 </div>
-                <?php require_once('../Model/footer.inc.php'); ?>
 
                 <div class="mb-3">
                     <input type="submit" class="btn btn-primary" value="Ajouter l'image">
@@ -102,3 +101,4 @@ if (isset($_GET['action']) && $_GET['action'] == "delete") {
         </div>
     </div>
 </div>
+<?php require_once('../Models/footer.inc.php'); ?>

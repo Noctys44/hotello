@@ -1,8 +1,8 @@
 <?php
 
-require_once('../Model/init.php');
-require_once('../Model/Reservation.php');
-require_once('../Model/ReservationManager.php');
+require_once('../Models/pdo.php');
+require_once('../Models/Reservation.php');
+require_once('../Models/ReservationManager.php');
 
 $reservationManager = new ReservationManager($pdo);
 
@@ -21,7 +21,7 @@ if (!empty($_POST) && !isset($_GET['action']) && !isset($_GET['action']) == 'upd
 
 ?>
 
-<?php require_once('../Model/header.inc.php'); ?>
+<?php require_once('../Models/header.inc.php'); ?>
 
 
 <!-- FORM ROOMS -->
@@ -64,4 +64,4 @@ if (!empty($_POST) && !isset($_GET['action']) && !isset($_GET['action']) == 'upd
     </div>
 </div>
 
-<?php require_once('../Model/footer.inc.php'); ?>
+<?php require_once('../Models/footer.inc.php'); ?>

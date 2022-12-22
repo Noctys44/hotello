@@ -1,8 +1,8 @@
 <?php
 
-require_once('../Model/init.php');
-require_once('../Model/Equipments.php');
-require_once('../Model/EquipmentsManager.php');
+require_once('../Models/pdo.php');
+require_once('../Models/Equipments.php');
+require_once('../Models/EquipmentsManager.php');
 
 $equipment = new EquipmentsManager($pdo);
 $success = "";
@@ -42,7 +42,7 @@ if (!empty($_POST) && !isset($_GET['action']) && !isset($_GET['action']) == 'upd
 
 ?>
 
-<?php require_once('../Model/header.inc.php'); ?>
+<?php require_once('../Models/header.inc.php'); ?>
 
 <!-- EQUIPMENTS TABLE -->
 <div class="container">
@@ -116,4 +116,4 @@ if (!empty($_POST) && !isset($_GET['action']) && !isset($_GET['action']) == 'upd
         </div>
     </div>
 </div>
-<?php require_once('../Model/footer.inc.php'); ?>
+<?php require_once('../Models/footer.inc.php'); ?>
