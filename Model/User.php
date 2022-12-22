@@ -205,6 +205,5 @@ class User
     public function isUserValid()
     {
         return !(empty($this->lastname) || empty($this->firstname) || empty($this->mail) || empty($this->password) || empty($this->address) || empty($this->city) || empty($this->zipcode) || empty($this->phone) || empty($this->birthdate) || empty($this->country));
-        // return !(empty($_POST['lastname']) || empty($_POST['firstname']) || empty($_POST['mail']) || empty($_POST['password']) || empty($_POST['address']) || empty($_POST['city']) || empty($_POST['zipcode']) || empty($_POST['phone']) || empty($_POST['birthdate']) || empty($_POST['country']));
     }
 }
